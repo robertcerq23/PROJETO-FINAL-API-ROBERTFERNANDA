@@ -1,18 +1,21 @@
-import { TextInputProps } from "react-native";
-import { Container, Label, Field } from './styles';
+import { TouchableOpacityProps } from "react-native";
+import { Container, Title } from "./styles";
 
-interface FieldProps extends TextInputProps {
-    label: string;
-    placeholder?: string;
-    name?: string;
-    error?: string;
-  }
+interface ButtonProps extends TouchableOpacityProps {
+  title?: string;
+  variant?: "primary" | "secondary";
+  noSpacing?: boolean;
+}
 
-export default function Input({label, placeholder, name, error, ...rest}:FieldProps) {
-    return (
-        <Container>
-            <Label>{label}</Label>
-            <Field placeholder={placeholder} value={name}  placeholderTextColor={'#2D767F'} {...rest}/>
-        </Container>
-    );
+export function Button({
+  title,
+  variant = "primary",
+  noSpacing = false,
+  ...others
+}: ButtonProps) {
+  return (
+    <Container {...others} $variant={variant} $noSpacing={noSpacing}>
+      <Title $variant={variant}>{title}</Title>
+    </Container>
+  );
 }

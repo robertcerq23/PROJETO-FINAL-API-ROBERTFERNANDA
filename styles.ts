@@ -1,23 +1,28 @@
-import { styled } from 'styled-components/native';
+import styled from "styled-components/native";
 
-export const Container = styled.View`
-  align-items: left;
-  width: 100%;
-  gap: 4px;
+type ButtonProps = {
+  $variant?: "primary" | "secondary";
+  $noSpacing?: boolean;
+};
+
+export const Container = styled.TouchableOpacity<ButtonProps>`
+  width: ${({ $noSpacing }) => ($noSpacing ? "max-content" : "100%")};
+  height: ${({ $noSpacing }) => ($noSpacing ? "46px" : "max-content")};
+  padding: ${({ $noSpacing }) => ($noSpacing ? "0px 16px" : "16px")};
+  border-radius: 8px;
+  gap: 8px;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${({ $variant, theme }) =>
+    $variant === "primary" ? theme.COLORS.BLUE : "transparent"};
 `;
 
-export const Label = styled.Text`
+export const Title = styled.Text<ButtonProps>`
   font-size: 14px;
   font-weight: bold;
   line-height: 16px;
   text-align: left;
-  color: ${({theme})=>theme.COLORS.GREEN};
-`;
-
-export const Field = styled.TextInput`
-    border: 1px solid ${({theme})=>theme.COLORS.GRAY_02};
-    border-radius: 8px;
-    padding: 16px;
-    background-color: ${({theme})=>theme.COLORS.GRAY_01};
-    width: 100%;
+  color: ${({ $variant, theme }) => ($variant === "primary" ? theme.COLORS.WHITE : theme.COLORS.BLUE)};
 `;
