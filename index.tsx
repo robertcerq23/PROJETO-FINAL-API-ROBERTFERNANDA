@@ -1,7 +1,18 @@
-import { TextLogo } from './styles';
+import { TextInputProps } from "react-native";
+import { Container, Label, Field } from './styles';
 
-export default function Logo() {
+interface FieldProps extends TextInputProps {
+    label: string;
+    placeholder?: string;
+    name?: string;
+    error?: string;
+  }
+
+export default function Input({label, placeholder, name, error, ...rest}:FieldProps) {
     return (
-        <TextLogo>VagaCerta</TextLogo>
+        <Container>
+            <Label>{label}</Label>
+            <Field placeholder={placeholder} value={name}  placeholderTextColor={'#2D767F'} {...rest}/>
+        </Container>
     );
 }
