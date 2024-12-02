@@ -1,49 +1,34 @@
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+import { Container, Content, OpenButton, Title, Data, Company } from './styles';
 import { Feather } from '@expo/vector-icons';
-import { 
-    Wrapper,
-    Container, 
-    Header, 
-    HeaderButtonContainer, 
-    ButtonIcon, 
-    ButtonText,
-    ContentContainer,
-} from '../Profile/styles';
-import Logo from '../../components/Logo';
-import theme from '../../theme';
-import Input from '../../components/Input'
-import { Button } from '../../components/Button';
+
+import { RootStackParamList } from '../../utils/Types';
+
+interface Data{
+    id: number;
+    title: string;
+    dataCreated: string;
+    company: string;
+  }
 
 
-export default function Profile({navigation }) {
+type Props = NativeStackScreenProps<RootStackParamList>;
 
+export default function VagaCard({id, title, dataCreated, company}: Data) {
+    const navigation = useNavigation<Props['navigation']>();
+    
     return (
-        <Wrapper>
-            <Header>
-                <HeaderButtonContainer onPress={() => navigation.goBack()}>
-                    <ButtonIcon>
-                        <Feather size={16} name="chevron-left" color={theme.COLORS.BLUE} />
-                    </ButtonIcon>
-                    <ButtonText>
-                        Voltar
-                    </ButtonText>
-                </HeaderButtonContainer>
-                <Logo />
-            </Header>
-
-            <Container>
-                <ContentContainer>
-                    <Input label='Nome' placeholder='digite seu nome'/>
-                    <Input label='E-mail' placeholder='digite seu e-mail'/>
-                    <Input label='Senha' placeholder='digite sua senha'/>
-                </ContentContainer>
-
-                <Button 
-                    title="Salvar informações" 
-                    noSpacing={true} 
-                    variant='primary'
-                    />
-            </Container>
-        </Wrapper>
+        <Container onPress={() => navigation.navigate('Details', { id })}>
+            <Content>
+                <Title numberOfLines={1}>{title}</Title>
+                <Data>{dataCreated}</Data>
+                <Company numberOfLines={1}>{company}</Company>
+            </Content>
+            <OpenButton>
+                <Feather name="chevron-right" size={24} color={'#3D6CB9'} />
+            </OpenButton>
+        </Container>
     );
 }
