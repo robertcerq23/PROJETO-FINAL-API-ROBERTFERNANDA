@@ -1,4 +1,7 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "extends": "@sindresorhus/tsconfig",
+  "exclude": ["src/**/*.test.ts"],
+  "compilerOptions": {
+    "outDir": "./lib"
+  }
 }
