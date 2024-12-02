@@ -1,28 +1,59 @@
-import styled from "styled-components/native";
+import { styled } from 'styled-components/native';
 
-type ButtonProps = {
-  $variant?: "primary" | "secondary";
-  $noSpacing?: boolean;
-};
-
-export const Container = styled.TouchableOpacity<ButtonProps>`
-  width: ${({ $noSpacing }) => ($noSpacing ? "max-content" : "100%")};
-  height: ${({ $noSpacing }) => ($noSpacing ? "46px" : "max-content")};
-  padding: ${({ $noSpacing }) => ($noSpacing ? "0px 16px" : "16px")};
-  border-radius: 8px;
-  gap: 8px;
-
-  justify-content: center;
+export const Wrapper = styled.SafeAreaView`
+  flex: 1;
+  justify-content: flex-start;
   align-items: center;
-
-  background-color: ${({ $variant, theme }) =>
-    $variant === "primary" ? theme.COLORS.BLUE : "transparent"};
 `;
 
-export const Title = styled.Text<ButtonProps>`
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 16px;
+export const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  padding: 16px 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: ${({theme})=>theme.COLORS.GREEN};
+`;
+export const HeaderButtonContainer = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px 0;
+`;
+export const ButtonIcon = styled.View``;
+export const ButtonText = styled.Text`
+  font-size: ${({theme})=>theme.FONT_SIZE.SM}px;
+  font-weight: 700;
+  text-align: center;
+  color: ${({theme})=>theme.COLORS.BLUE};
+`;
+
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 16px;
+  gap: 16px;
+  background-color: ${({theme})=>theme.COLORS.WHITE};
+`;
+
+export const ContentContainer = styled.View`
+  width: 100%;
+  gap: 16px;
+`;
+
+export const Title = styled.Text`
+  font-size: ${({theme})=>theme.FONT_SIZE.LG}px;
+  font-weight: 700;
+  text-align: center;
+  color: ${({theme})=>theme.COLORS.BLACK};
+`;
+
+export const Description = styled.Text`
+  font-size: ${({theme})=>theme.FONT_SIZE.SM}px;
+  font-weight: 400;
   text-align: left;
-  color: ${({ $variant, theme }) => ($variant === "primary" ? theme.COLORS.WHITE : theme.COLORS.BLUE)};
+  color: ${({theme})=>theme.COLORS.BLACK};
 `;
